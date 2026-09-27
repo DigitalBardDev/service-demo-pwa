@@ -1,9 +1,9 @@
 // src/supabaseClient.js
 import { createClient } from '@supabase/supabase-js';
 
-// These pull from a hidden .env.local file that you will create for each client
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "";
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || "";
+// Fallback to a dummy URL so the build doesn't crash on Vercel without environment variables
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "https://placeholder.supabase.co";
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || "placeholder-key";
 
-export const isPlaceholder = supabaseUrl.includes('placeholder-template-url');
+export const isPlaceholder = supabaseUrl.includes('placeholder');
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
